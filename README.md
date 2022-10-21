@@ -4,7 +4,7 @@ Pushed to Docker Hub: https://hub.docker.com/r/mmedin/react-native-apk-build
 
 ## Intro
 
-This image is primarily oriented to help with the creation of a debug APK for Android. Version [1.0.0](https://github.com/mmedin/docker-react-native-apk-build/releases/tag/1.0.0) is based on the minimalist Debian-based image [bitnami/minideb](https://hub.docker.com/r/bitnami/minideb). Version [1.0.0](https://github.com/mmedin/docker-react-native-apk-build/releases/tag/1.0.0) is based on the official [gradle](https://hub.docker.com/_/gradle) image.
+This image is primarily oriented to help with the creation of a debug APK for Android. Version [1.0.0](https://github.com/mmedin/docker-react-native-apk-build/releases/tag/1.0.0) is based on the minimalist Debian-based image [bitnami/minideb](https://hub.docker.com/r/bitnami/minideb). Version [2.0.0](https://github.com/mmedin/docker-react-native-apk-build/releases/tag/2.0.0) is based on the official [gradle](https://hub.docker.com/_/gradle) image.
 
 It tries to be a lighter option than other similar efforts, and therefore more suitable for CI.
 
