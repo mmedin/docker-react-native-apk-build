@@ -1,19 +1,21 @@
-FROM bitnami/minideb
-SHELL ["/bin/bash", "--login", "-c"]
-RUN install_packages curl unzip openjdk-11-jre git
+FROM gradle:7-jdk11-jammy
+ENV DEBIAN_FRONTEND=noninteractive
 
-RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
-RUN nvm install lts/gallium
+### Installing nodejs and react dependencies
+RUN curl -sL https://deb.nodesource.com/setup_16.x  | bash -
+RUN apt update && \
+    apt install -y nodejs && \
+    rm -rf /var/lib/apt/lists/*
 RUN npm add -g react-native-cli react-native
 
-RUN curl -O https://dl.google.com/android/repository/commandlinetools-linux-8512546_latest.zip
-RUN mkdir -p /usr/lib/android-sdk/cmdline-tools
-RUN unzip commandlinetools-linux-8512546_latest.zip -d /usr/lib/android-sdk/cmdline-tools
-RUN rm commandlinetools-linux-8512546_latest.zip
-RUN mv /usr/lib/android-sdk/cmdline-tools/cmdline-tools/ /usr/lib/android-sdk/cmdline-tools/latest/
+### Installing Android command line tools
+RUN curl -O https://dl.google.com/android/repository/commandlinetools-linux-8512546_latest.zip && \
+    mkdir -p /usr/lib/android-sdk/cmdline-tools && \
+    unzip commandlinetools-linux-8512546_latest.zip -d /usr/lib/android-sdk/cmdline-tools && \
+    rm commandlinetools-linux-8512546_latest.zip && \
+    mv /usr/lib/android-sdk/cmdline-tools/cmdline-tools/ /usr/lib/android-sdk/cmdline-tools/latest/
 RUN yes | /usr/lib/android-sdk/cmdline-tools/latest/bin/sdkmanager --licenses
 
 ENV ANDROID_HOME /usr/lib/android-sdk
 WORKDIR /workspace
-
 ENTRYPOINT ["/bin/bash", "--login", "-c"]
